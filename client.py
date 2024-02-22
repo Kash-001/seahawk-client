@@ -118,9 +118,6 @@ def get_ip():
 
 def scan_iprange(ip_range: str):
     nmScan = nmap.PortScanner()
-
-    print(ip_range)
-
     nmScan.scan(hosts=ip_range, arguments='-T4 -A -v --top-ports 1000')
 
     ip_ports, total_hosts = {}, 0
