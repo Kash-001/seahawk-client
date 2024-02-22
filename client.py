@@ -143,7 +143,7 @@ def update_script():
         check_call(["git", "pull"])
 
         print("Script Mis à jour, redémarrez l'application.")
-        sys.exit(0)
+        exit()
     except CalledProcessError as e:
         print(f"Impossible de mettre le script à jour : {e}")
     except Exception as e:
