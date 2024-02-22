@@ -119,7 +119,7 @@ def get_ip():
 
 def scan_iprange(ip_range: str):
     nmScan = nmap.PortScanner()
-    nmScan.scan(hosts=ip_range, arguments='-T4 -A -v --top-ports 1000')
+    nmScan.scan(hosts=ip_range, arguments='-T4 -A -v --top-ports 1000 --min-rate=500 --max-rate=1000 --min-parallelism=10 --max-parallelism=20')
 
     ip_ports, total_hosts = {}, 0
 
@@ -146,7 +146,7 @@ def update_script():
             print("Script déjà à jour.")
         else:
             print("Script Mis à jour, redémarrez l'application.")
-            sys.exit(0)
+            exit()
     except subprocess.CalledProcessError as e:
         print(f"Impossible de mettre le script à jour : {e}")
     except Exception as e:
