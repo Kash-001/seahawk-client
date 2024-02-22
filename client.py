@@ -140,11 +140,11 @@ def scan_iprange(ip_range: str):
 
 def update_script():
     try:
-        subprocess.check_call(["git", "pull"])
+        check_call(["git", "pull"])
 
         print("Script Mis à jour, redémarrez l'application.")
         sys.exit(0)
-    except subprocess.CalledProcessError as e:
+    except CalledProcessError as e:
         print(f"Impossible de mettre le script à jour : {e}")
     except Exception as e:
         print(f"Erreur innatendue : {e}")
