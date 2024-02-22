@@ -1,5 +1,6 @@
 import tkinter as tk
 import nmap
+from subprocess import check_call, CalledProcessError
 from time import sleep
 from socket import gethostname, socket, AF_INET, SOCK_DGRAM
 from datetime import datetime
@@ -137,7 +138,20 @@ def scan_iprange(ip_range: str):
     
     return ip_ports, total_hosts
 
+def update_script():
+    try:
+        subprocess.check_call(["git", "pull"])
+
+        print("Script Mis à jour, redémarrez l'application.")
+        sys.exit(0)
+    except subprocess.CalledProcessError as e:
+        print(f"Impossible de mettre le script à jour : {e}")
+    except Exception as e:
+        print(f"Erreur innatendue : {e}")
+
 if __name__ == "__main__":
+    update_script()
+    
     root = tk.Tk()
 
     with open(file=SETTINGS_FILE, mode='r', encoding='utf-8') as settings_file:
