@@ -7,7 +7,7 @@ from datetime import datetime
 from json import load, dump
 from requests import get
 from platform import system as getarch
-from flask import Flask
+from flask import Flask, make_response
 from threading import Thread
 
 online_api = Flask(__name__)
