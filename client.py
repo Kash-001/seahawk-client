@@ -103,11 +103,15 @@ class SeaHawks:
 
 @online_api.route('/status', methods=['GET'])
 def get_status():
-    return 'online'
+    response = make_response('online')
+    response.headers['Access-Control-Allow-Origin'] = 'server ip'
+    response.headers['Access-Control-Allow-Methods'] = 'GET'
+    response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
+    return response
 
 def run_flask_app():
     print('application started')
-    online_api.run()
+    online_api.run(host="0.0.0.0", port="5000")
 
 def get_ip():
     s = socket(AF_INET, SOCK_DGRAM)
