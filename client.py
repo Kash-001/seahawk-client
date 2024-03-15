@@ -42,7 +42,10 @@ class SeaHawks:
         self.entry.place(x=30, y=105, width=518, height=30)
 
     def create_button(self, master, text, command, x, y, width, height, os_size):
-        button = tk.Button(master, text=text, command=command, relief='solid', bg="#323232", borderwidth=1, font=('Arial', os_size), fg="#ffffff", justify="center")
+        if getarch() == 'Windows':
+            button = tk.Button(master, text=text, command=command, relief='solid', bg="#323232", borderwidth=1, font=('Arial', os_size), fg="#ffffff", justify="center")
+        else:
+            button = tk.Button(master, text=text, command=command, relief='solid', bg="#000000", borderwidth=1, font=('Arial', os_size), fg="#323232", justify="center")
         button.place(x=x, y=y, width=width, height=height)
         return button
 
