@@ -16,6 +16,7 @@ CORS(online_api)
 
 SETTINGS_FILE = 'settings.json'
 WIDTH, HEIGHT = 592, 454
+HOSTNAME = gethostname()
 
 class SeaHawks:
     def __init__(self, root, os, ipaddr):
@@ -128,6 +129,7 @@ class SeaHawks:
 @online_api.route('/lastscan', methods=['GET'])
 def get_last_scan():
     last_scan_info = {
+        "hostname": gethostname(), 
         "last_scan_time": app.lastscan_api_data(),
         "clients": app.clients_api_data(),
         "scan_results" : app.scanresults_api_data()
@@ -136,7 +138,12 @@ def get_last_scan():
 
 @online_api.route('/health', methods=['GET'])
 def get_infos():
-    server_info = {"server_name": gethostname(), "status": "online", "version": settings['version'], "ip_address" : ipaddr}
+    server_info = {
+        "server_name": gethostname(),
+        "status": "online",
+        "version": settings['version'],
+        "ip_address" : ipaddr
+    }
     return jsonify(server_info)
 
 def run_flask_app():

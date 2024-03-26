@@ -1,6 +1,8 @@
 {
-    "lastscan": "",
-    "clients": 0,
+    "lastscan": "2024-03-26 22:30:02",
+    "clients": 1,
     "version": "v1.1.5",
-    "scanresult": {}
+    "scanresult": {
+        "192.168.10.188": "22 80 "
+    }
 }
