@@ -179,6 +179,8 @@ def update_script():
         if "Already up to date." in result.stdout:
             print("Script déjà à jour.")
         else:
+            subprocess.run(["git", "fetch", "--all"], capture_output=True, text=True)
+            subprocess.run(["git", "reset", "--hard", "origin"], capture_output=True, text=True)
             print("Script Mis à jour, redémarrez l'application.")
             exit()
     except subprocess.CalledProcessError as e:
