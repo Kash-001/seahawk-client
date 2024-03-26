@@ -8,9 +8,11 @@ from json import load, dump, loads
 from requests import get
 from platform import system as getarch
 from flask import Flask, jsonify
+from flask_cors import CORS
 from threading import Thread
 
 online_api = Flask(__name__)
+CORS(online_api)
 
 SETTINGS_FILE = 'settings.json'
 WIDTH, HEIGHT = 592, 454
@@ -123,14 +125,6 @@ class SeaHawks:
         self.load_settings()
         return self.settings['scanresult']
 
-#@online_api.route('/status', methods=['GET'])
-#def get_status():
-#    response = make_response('online')
-#    response.headers['Access-Control-Allow-Origin'] = 'server ip'
-#    response.headers['Access-Control-Allow-Methods'] = 'GET'
-#    response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
-#    return response
-
 @online_api.route('/lastscan', methods=['GET'])
 def get_last_scan():
     last_scan_info = {
@@ -147,7 +141,7 @@ def get_infos():
 
 def run_flask_app():
     print('application started')
-    online_api.run(host="0.0.0.0", port="5000")
+    online_api.run(host="0.0.0.0", port="53597")
 
 def get_ip():
     s = socket(AF_INET, SOCK_DGRAM)
