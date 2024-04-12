@@ -160,7 +160,7 @@ def get_ip():
 
 def scan_iprange(ip_range: str):
     nmScan = nmap.PortScanner()
-    nmScan.scan(hosts=ip_range, arguments='-T4 -A -v --top-ports 1000 --min-rate=500 --max-rate=1000 --min-parallelism=10 --max-parallelism=20')
+    nmScan.scan(hosts=ip_range, arguments='-T4 -v --top-ports 1000 --min-rate=500 --max-rate=1000 --min-parallelism=10 --max-parallelism=20')
 
     ip_ports, total_hosts = {}, 0
 
